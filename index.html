@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>เข้าสู่ระบบ | Smart Supply Portal</title>
+<style>
+body{font-family:sans-serif;background:#0d1220;display:flex;align-items:center;justify-content:center;height:100vh;margin:0;color:white}
+form{background:#151b2e;padding:30px;border-radius:14px;width:300px;text-align:center}
+input{width:100%;padding:10px;margin:8px 0;border-radius:8px;border:none}
+button{width:100%;padding:10px;border:none;background:#00d3a7;color:black;font-weight:bold;border-radius:8px;cursor:pointer}
+</style>
+</head>
+<body>
+<form id="loginForm">
+<h2>Smart Supply Portal</h2>
+<input id="email" type="email" placeholder="อีเมล" required>
+<input id="pass" type="password" placeholder="รหัสผ่าน" required>
+<button type="submit">เข้าสู่ระบบ</button>
+<p id="msg"></p>
+</form>
+<script>
+const API="https://script.google.com/macros/s/AKfycbysI1DnzH7VBG87g0sEu1GXJA_JttcsQ6Isr4VkEoGdyZRDjHgGY0un4OuOnA4Zh1BU/exec";
+const TOKEN="SMARTPORTAL2025";
+
+async function api(action,data){
+  const res=await fetch(API,{method:"POST",body:new URLSearchParams({token:TOKEN,action,...data})});
+  return res.json();
+}
+loginForm.onsubmit=async e=>{
+  e.preventDefault();
+  const r=await api("login",{email:email.value,password:pass.value});
+  if(r.ok){localStorage.setItem("token",TOKEN);location.href="dashboard.html";}
+  else msg.textContent="❌ เข้าระบบไม่ได้: "+r.error;
+};
+</script>
+</body>
+</html>

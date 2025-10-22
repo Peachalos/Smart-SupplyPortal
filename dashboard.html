@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dashboard • Smart Supply Portal</title>
+<style>
+  body{font-family:sans-serif;background:#0d1220;color:#fff;margin:0;padding:24px}
+  .card{background:#151b2e;border:1px solid #253056;border-radius:14px;padding:16px;max-width:820px}
+  button{padding:10px 14px;border:0;border-radius:10px;background:#00d3a7;color:#021012;font-weight:700;cursor:pointer}
+  code{background:#0c1222;padding:2px 6px;border-radius:6px;border:1px solid #253056}
+</style>
+</head>
+<body>
+  <h2>Welcome to Smart Supply Portal</h2>
+  <div class="card">
+    <p>เข้าสู่ระบบแล้ว! โทเคนที่เก็บไว้: <code id="tok">-</code></p>
+    <p>ต่อไปจะใส่เมนู: PO / Shipment / Receive / Dashboard</p>
+    <button onclick="logout()">ออกจากระบบ</button>
+  </div>
+<script>
+  const TOKEN_EXPECT = "SMARTPORTAL2025";
+  const t = localStorage.getItem("token");
+  document.getElementById('tok').textContent = t || "(ไม่มี)";
+  if (t !== TOKEN_EXPECT) {
+    // ถ้าไม่มี token หรือไม่ตรง ให้ย้อนกลับไปหน้า login
+    location.href = "index.html";
+  }
+  function logout(){ localStorage.clear(); location.href="index.html"; }
+</script>
+</body>
+</html>

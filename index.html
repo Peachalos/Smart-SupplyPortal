@@ -20,8 +20,8 @@ button{width:100%;padding:10px;border:none;background:#00d3a7;color:black;font-w
 <p id="msg"></p>
 </form>
 <script>
-const API="https://script.google.com/macros/s/AKfycbx6o7U7LkUMXtizlbEJv7r19QVBGUexKh18CUKFZ_VlKdzEQK0w44abw2J2UkNfDAOs/exec";
-const TOKEN="SMARTPORTAL2025";
+const API = "https://script.google.com/macros/s/AKfycbx6o7U7LkUMXtizlbEJv7r19QVBGUexKh18CUKFZ_VlKdzEQK0w44abw2J2UkNfDAOs/exec";
+const TOKEN = "SMARTPORTAL2025";
 
 async function api(action,data){
   const res=await fetch(API,{method:"POST",body:new URLSearchParams({token:TOKEN,action,...data})});
